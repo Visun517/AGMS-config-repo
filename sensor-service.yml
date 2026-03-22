@@ -8,6 +8,9 @@ spring:
 external:
   iot:
     base-url: http://104.211.95.241:8080/api
+    endpoints:
+      telemetry: /devices/telemetry/{deviceId}
+      login: /auth/login
     username: "Visun"
     password: "123456"
 
@@ -22,3 +25,4 @@ feign:
       default:
         connectTimeout: 5000
         readTimeout: 5000
+
