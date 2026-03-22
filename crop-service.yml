@@ -5,7 +5,7 @@ spring:
   application:
     name: crop-service
 
-    data:
+  data:
     mongodb:
       uri: mongodb://localhost:27017/crop_inventory_db
 
