@@ -1,10 +1,13 @@
 server:
   port: 8084
 
+# --- Local Laptop Settings ---
 spring:
   application:
     name: crop-service
-
+  config:
+    activate:
+      on-profile: default
   data:
     mongodb:
       uri: mongodb://localhost:27017/crop_inventory_db
@@ -13,13 +16,18 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
-    fetch-registry: true
-    register-with-eureka: true
-  instance:
-    prefer-ip-address: true
 
-logging:
-  level:
-    root: INFO
-    lk.ijse.gdse71.cropservice: DEBUG
-    org.springframework.data.mongodb: DEBUG
+---
+# --- Azure VM / Docker Settings ---
+spring:
+  config:
+    activate:
+      on-profile: prod
+  data:
+    mongodb:
+      uri: mongodb://mongodb-db:27017/crop_inventory_db
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://discovery-server:8761/eureka/

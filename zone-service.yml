@@ -1,21 +1,33 @@
 server:
   port: 8081
 
+# --- Local Laptop Settings ---
 spring:
+  config:
+    activate:
+      on-profile: default
   datasource:
     url: jdbc:mysql://localhost:3306/zone_db?createDatabaseIfNotExist=true
     username: root
     password: Ijse@1234
-  jpa:
-    hibernate:
-      ddl-auto: update
 
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
 
-iot:
-  external:
-    username: "Visun"
-    password: "123456"
+---
+# --- Azure VM / Docker Settings ---
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    url: jdbc:mysql://mysql-db:3306/agms_db
+    username: root
+    password: root
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://discovery-server:8761/eureka/

@@ -1,7 +1,11 @@
 server:
   port: 8083
 
+# --- Local Laptop Settings ---
 spring:
+  config:
+    activate:
+      on-profile: default
   data:
     mongodb:
       uri: mongodb://localhost:27017/automation_db
@@ -10,12 +14,18 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
-    register-with-eureka: true
-    fetch-registry: true
 
-feign:
+---
+# --- Azure VM / Docker Settings ---
+spring:
+  config:
+    activate:
+      on-profile: prod
+  data:
+    mongodb:
+      uri: mongodb://mongodb-db:27017/automation_db
+
+eureka:
   client:
-    config:
-      default:
-        connectTimeout: 5000
-        readTimeout: 5000
+    service-url:
+      defaultZone: http://discovery-server:8761/eureka/
